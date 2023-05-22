@@ -9,7 +9,12 @@ db::RouteStatus PreRoute::run(int numPitchForGuideExpand) {
     }
 
     // add diff-layer guides
-    if (db::rrrIterSetting.addDiffLayerGuides) {
+
+    std::string netName = localNet.getName();
+    std::string front("front");
+    std::size_t found = netName.find(front);
+
+    if (found!=std::string::npos && db::rrrIterSetting.addDiffLayerGuides) {
         int oriSize = guides.size();
         for (int i = 0; i < oriSize; ++i) {
             int j = guides[i].layerIdx;
